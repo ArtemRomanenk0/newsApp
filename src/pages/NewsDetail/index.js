@@ -4,6 +4,7 @@ import routeMain from './routes'
 import getNews from 'services/GetNews'
 import DateView from 'components/DateView'
 import './styles.scss'
+import Error from './Error.jpg'
 import { prepareTitles } from 'utils/PrepareTitle/prepareTitle'
 
 const NewsDetail = () => {
@@ -27,7 +28,14 @@ const NewsDetail = () => {
               <DateView value={news.publishedAt} />
             </div>
             <div className='rightPart'>
-              <img src={news.urlToImage} alt={news.urlToImage} />
+              <img
+                src={news.urlToImage}
+                alt={news.urlToImage}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null
+                  currentTarget.src = Error
+                }}
+              />
               <p className='summary'>{news.content}</p>
             </div>
           </div>
