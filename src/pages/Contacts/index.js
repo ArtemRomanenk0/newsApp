@@ -5,7 +5,7 @@ import './styles.scss'
 
 const Contacts = () => {
   return (
-    <div className='contactsPage'>
+    <section className='contactsPage'>
       <div className='info'>
         <div className='phone'>
           <a href='tel: +79803634829'> +7-(980)-363-48-29 </a>
@@ -22,7 +22,7 @@ const Contacts = () => {
       <div className='image'>
         <img src={Artem} alt={Artem} />
       </div>
-    </div>
+    </section>
   )
 }
 
