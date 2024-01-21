@@ -3,10 +3,10 @@ import prepareDate from 'utils/PrepareDate/prepareDate'
 import './styles.scss'
 
 interface IDateViewParams {
-	value: string
+  value: string
 }
 
-const DateView: React.FC<IDateViewParams> = ({value}) => {
+const DateView: React.FC<IDateViewParams> = ({ value }) => {
   const { day, month } = prepareDate(value)
   return (
     <p className='dateView'>

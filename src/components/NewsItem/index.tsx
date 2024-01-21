@@ -8,11 +8,10 @@ import { prepareTitle } from 'utils/PrepareTitle/prepareTitle'
 import { INews } from 'types/INews'
 
 interface INewsItemParams {
-	item: INews
+  item: INews
 }
 
-
-const NewsItem: React.FC<INewsItemParams> = ({item}) => {
+const NewsItem: React.FC<INewsItemParams> = ({ item }) => {
   return (
     <NavLink className='newsItem' to={routeNewsDetail(prepareTitle(item.title))}>
       <div className='title'> {item.title} </div>

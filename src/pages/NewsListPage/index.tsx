@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import routeMain from './routes'
 import PageTitle from 'components/PageTitle'
 import NewsList from 'components/NewsList'
-import getNews from 'services/GetNews'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { loadNews } from 'store/news/actions'
+import { selectList } from 'store/news/selectors'
+
 import './styles.scss'
-import { prepareTitles } from 'utils/PrepareTitle/prepareTitle'
-import { INews } from 'types/INews'
 
 const NewsListPage = () => {
-  const [newsList, setNewsList] = useState<INews[]>([])
+  const dispatch = useDispatch()
+  const newsList = useSelector(selectList)
   useEffect(() => {
-    getNews().then((response) => {
-      const prepareTi = prepareTitles(response.data.articles)
-      setNewsList(prepareTi)
-    })
-  }, [])
+    dispatch(loadNews())
+  }, [dispatch])
+
   return (
     <section>
       <PageTitle

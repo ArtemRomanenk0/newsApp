@@ -4,10 +4,10 @@ import './styles.scss'
 import { INews } from 'types/INews'
 
 interface INewsListParams {
-	list: INews []
+  list: INews[]
 }
 
-const NewsList: React.FC<INewsListParams> = ({list}) => {
+const NewsList: React.FC<INewsListParams> = ({ list }) => {
   return (
     <div className='newsList'>
       {list.map((news: INews) => (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import routeMain from './routes'
-import getNews from 'services/GetNews'
+
 import DateView from 'components/DateView'
 import './styles.scss'
 import { NavLink } from 'react-router-dom'
@@ -9,18 +9,20 @@ import { routeMain as routeMainPage } from 'pages/MainPage'
 import Error from 'assets/img/Error.jpg'
 import { prepareTitles } from 'utils/PrepareTitle/prepareTitle'
 import { INews } from 'types/INews'
-
+import { selectList } from 'store/news/selectors'
+import { useSelector } from 'react-redux'
 
 const NewsDetail = () => {
   const { id } = useParams()
   const [news, setNews] = useState<INews | null>(null)
+
+  const newsList = useSelector(selectList)
+
   useEffect(() => {
-    getNews().then((response) => {
-      const prepareTi = prepareTitles(response.data.articles)
-      setNews(prepareTi.find((item: INews) => item.source.id === id))
-    })
-  }, [id])
-console.log(news)
+    const prepareTi = prepareTitles(newsList)
+    setNews(prepareTi.find((item: INews) => item.source.id === id))
+  }, [id, newsList])
+  console.log(news)
   return (
     <section className='newsDetailPage'>
       <NavLink
