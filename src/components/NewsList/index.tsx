@@ -1,11 +1,16 @@
 import React from 'react'
 import NewsItem from 'components/NewsItem'
 import './styles.scss'
+import { INews } from 'types/INews'
 
-const NewsList = (props) => {
+interface INewsListParams {
+	list: INews []
+}
+
+const NewsList: React.FC<INewsListParams> = ({list}) => {
   return (
     <div className='newsList'>
-      {props.list.map((news) => (
+      {list.map((news: INews) => (
         <NewsItem key={news.title} item={news} />
       ))}
     </div>

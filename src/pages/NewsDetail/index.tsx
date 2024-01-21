@@ -4,27 +4,37 @@ import routeMain from './routes'
 import getNews from 'services/GetNews'
 import DateView from 'components/DateView'
 import './styles.scss'
-import Error from './Error.jpg'
+import { NavLink } from 'react-router-dom'
+import { routeMain as routeMainPage } from 'pages/MainPage'
+import Error from 'assets/img/Error.jpg'
 import { prepareTitles } from 'utils/PrepareTitle/prepareTitle'
+import { INews } from 'types/INews'
+
 
 const NewsDetail = () => {
   const { id } = useParams()
-  const [news, setNews] = useState(null)
+  const [news, setNews] = useState<INews | null>(null)
   useEffect(() => {
     getNews().then((response) => {
       const prepareTi = prepareTitles(response.data.articles)
-      setNews(prepareTi.find((item) => item.source.id === id))
+      setNews(prepareTi.find((item: INews) => item.source.id === id))
     })
-  }, [])
-
+  }, [id])
+console.log(news)
   return (
     <section className='newsDetailPage'>
+      <NavLink
+        to={routeMainPage()}
+        className={({ isActive }) => (isActive ? 'linkActive' : 'none')}
+      >
+        Назад на главную
+      </NavLink>
       {news ? (
         <div className='newsDetailWrapper'>
           <div>
             <div className='leftPart'>
               <h2 className='title'>{news.title}</h2>
-              <p className='source'>{news.source.name}</p>
+              <p className='source'> {news.author}</p>
               <DateView value={news.publishedAt} />
             </div>
             <div className='rightPart'>

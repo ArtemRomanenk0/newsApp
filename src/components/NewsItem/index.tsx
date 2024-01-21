@@ -5,14 +5,20 @@ import { routeMain as routeNewsDetail } from 'pages/NewsDetail'
 
 import './styles.scss'
 import { prepareTitle } from 'utils/PrepareTitle/prepareTitle'
+import { INews } from 'types/INews'
 
-const NewsItem = (props) => {
+interface INewsItemParams {
+	item: INews
+}
+
+
+const NewsItem: React.FC<INewsItemParams> = ({item}) => {
   return (
-    <NavLink className='newsItem' to={routeNewsDetail(prepareTitle(props.item.title))}>
-      <div className='title'> {props.item.title} </div>
+    <NavLink className='newsItem' to={routeNewsDetail(prepareTitle(item.title))}>
+      <div className='title'> {item.title} </div>
       <div className='bottomWrapper'>
-        <p className='source'>{props.item.source.name}</p>
-        <DateView value={props.item.publishedAt} />
+        <p className='source'>{item.author}</p>
+        <DateView value={item.publishedAt} />
       </div>
     </NavLink>
   )

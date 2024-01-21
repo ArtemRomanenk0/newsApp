@@ -1,6 +1,6 @@
 import React from 'react'
 import routeMain from './routes'
-import Artem from './Artem.jpg'
+import Artem from 'assets/img/Artem.jpg'
 import './styles.scss'
 
 const Contacts = () => {

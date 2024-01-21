@@ -5,9 +5,10 @@ import NewsList from 'components/NewsList'
 import getNews from 'services/GetNews'
 import './styles.scss'
 import { prepareTitles } from 'utils/PrepareTitle/prepareTitle'
+import { INews } from 'types/INews'
 
 const NewsListPage = () => {
-  const [newsList, setNewsList] = useState([])
+  const [newsList, setNewsList] = useState<INews[]>([])
   useEffect(() => {
     getNews().then((response) => {
       const prepareTi = prepareTitles(response.data.articles)

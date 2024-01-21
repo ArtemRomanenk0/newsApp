@@ -31,3 +31,15 @@
   }
 }
 
+.btn-new {
+  border-radius: 20px;
+  color: white;
+  transition: 0.2s linear;
+  background: #0b63f6;
+}
+
+.btn-new:hover {
+  -webkit-transform: rotateZ(5deg);
+  -ms-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+}
